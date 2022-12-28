@@ -16,6 +16,7 @@ function game() {
     console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
     console.log("--------------------------------------")
   }
+  console.log(finalWinner());
 }
 
 function getComputerChoice() {
@@ -44,6 +45,16 @@ function playRound(playerSelection, computerSelection) {
     return `Player wins! ${playerSelection} beats ${computerSelection}!`;
   } else {
     return `Computer wins! ${computerSelection} beats ${playerSelection}!`;
+  }
+}
+
+function finalWinner(playerScore, computerScore) {
+  if (playerScore > computerScore) {
+    return "Congratulations! You beat the computer."
+  } else if (computerScore > playerScore) {
+    return "Sorry loser, the computer beat you."
+  } else {
+    return "It was a tie. Try again!"
   }
 }
 
