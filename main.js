@@ -16,7 +16,7 @@ function game() {
     console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
     console.log("--------------------------------------")
   }
-  console.log(finalWinner());
+  console.log(finalWinner(playerScore, computerScore));
 }
 
 function getComputerChoice() {
@@ -53,7 +53,7 @@ function finalWinner(playerScore, computerScore) {
     return "Congratulations! You beat the computer."
   } else if (computerScore > playerScore) {
     return "Sorry loser, the computer beat you."
-  } else {
+  } else if (computerScore == playerScore) {
     return "It was a tie. Try again!"
   }
 }
