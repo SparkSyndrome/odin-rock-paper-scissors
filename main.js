@@ -1,23 +1,23 @@
 const GAME_OPTIONS = ["rock", "paper", "scissors"];
 
-function game() {
-  let computerScore = 0;
-  let playerScore = 0;
-  for (let i = 0; i < 5; i++) {
-    const computerSelection = getComputerChoice();
-    const playerSelection = getPlayerChoice();
-    playRound(playerSelection, computerSelection);
-    if (playRound(playerSelection, computerSelection) == `Player wins! ${playerSelection} beats ${computerSelection}!`) {
-      playerScore++;
-    } else if (playRound(playerSelection, computerSelection) == `Computer wins! ${computerSelection} beats ${playerSelection}!`) {
-      computerScore++;
-    }
-    console.log(playRound(playerSelection, computerSelection));
-    console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
-    console.log("--------------------------------------")
-  }
-  console.log(finalWinner(playerScore, computerScore));
-}
+// function game() {
+//   let computerScore = 0;
+//   let playerScore = 0;
+//   for (let i = 0; i < 5; i++) {
+//     const computerSelection = getComputerChoice();
+//     const playerSelection = getPlayerChoice();
+//     playRound(playerSelection, computerSelection);
+//     if (playRound(playerSelection, computerSelection) == `Player wins! ${playerSelection} beats ${computerSelection}!`) {
+//       playerScore++;
+//     } else if (playRound(playerSelection, computerSelection) == `Computer wins! ${computerSelection} beats ${playerSelection}!`) {
+//       computerScore++;
+//     }
+//     console.log(playRound(playerSelection, computerSelection));
+//     console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
+//     console.log("--------------------------------------")
+//   }
+//   console.log(finalWinner(playerScore, computerScore));
+// }
 
 function getComputerChoice() {
   const computerChoice = GAME_OPTIONS[Math.floor(Math.random() * GAME_OPTIONS.length)];
@@ -58,4 +58,4 @@ function finalWinner(playerScore, computerScore) {
   }
 }
 
-game();
+// game();
