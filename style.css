@@ -1,3 +1,42 @@
 html {
   background-image: url("/images/rock-paper-scissors-background.jpeg");
+  background-position: 50% 50%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.button-container {
+  display: flex;
+  margin: 500px;
+  gap: 100px;
+}
+
+button {
+  background: none;
+  border: 5px solid black;
+  border-radius: 5px;
+  box-shadow: 0 0 20px 1px white;
+  padding: 40px;
+}
+
+button img {
+  width: 150px;
+  height: 150px;
+  filter: invert(100%);
+}
+
+button:hover {
+  background: rgba(101, 99, 99, 0.5);
+  box-shadow: 0 0 20px 5px white;
+  cursor: pointer;
+}
+
+button#scissors {
+  rotate: 90deg;
+  transform: scaleY(-1);
 }

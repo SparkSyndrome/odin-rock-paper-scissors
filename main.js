@@ -24,19 +24,19 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-function getPlayerChoice() {
-  let validInput = false;
-  while (validInput == false) {
-    const playerChoice = prompt("Please enter 'rock', 'paper', or 'scissors' in the field below: ").toLowerCase();
-    if (playerChoice == null) {
-      continue;
-    }
-    if (GAME_OPTIONS.includes(playerChoice)) {
-      validInput = true;
-      return playerChoice;
-    }
-  }
-}
+// function getPlayerChoice() {
+//   let validInput = false;
+//   while (validInput == false) {
+//     const playerChoice = prompt("Please enter 'rock', 'paper', or 'scissors' in the field below: ").toLowerCase();
+//     if (playerChoice == null) {
+//       continue;
+//     }
+//     if (GAME_OPTIONS.includes(playerChoice)) {
+//       validInput = true;
+//       return playerChoice;
+//     }
+//   }
+// }
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection == computerSelection) {
@@ -59,3 +59,16 @@ function finalWinner(playerScore, computerScore) {
 }
 
 // game();
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => button.addEventListener('mousedown', e => {
+  button.style.backgroundColor = 'rgba(51, 51, 51, 0.55)';
+  button.style.boxShadow = '0 0 20px 10px white';
+}));
+
+buttons.forEach(button => button.addEventListener('mouseup', e => {
+  console.log(playRound(e.target.id, getComputerChoice()));
+  button.style.backgroundColor = '';
+  button.style.boxShadow = '';
+}));
