@@ -47,14 +47,16 @@ function finalWinner(playerScore, computerScore) {
 // game();
 
 const buttons = document.querySelectorAll('button');
+const roundWinner = document.querySelector('p');
 
 buttons.forEach(button => button.addEventListener('mousedown', e => {
+  roundWinner.innerText = "";
   button.style.backgroundColor = 'rgba(51, 51, 51, 0.55)';
   button.style.boxShadow = '0 0 20px 10px white';
 }));
 
 buttons.forEach(button => button.addEventListener('mouseup', e => {
-  console.log(playRound(e.target.id, getComputerChoice()));
+  roundWinner.innerText = (playRound(e.target.id, getComputerChoice()));
   button.style.backgroundColor = '';
   button.style.boxShadow = '';
 }));
