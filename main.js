@@ -24,20 +24,6 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-// function getPlayerChoice() {
-//   let validInput = false;
-//   while (validInput == false) {
-//     const playerChoice = prompt("Please enter 'rock', 'paper', or 'scissors' in the field below: ").toLowerCase();
-//     if (playerChoice == null) {
-//       continue;
-//     }
-//     if (GAME_OPTIONS.includes(playerChoice)) {
-//       validInput = true;
-//       return playerChoice;
-//     }
-//   }
-// }
-
 function playRound(playerSelection, computerSelection) {
   if (playerSelection == computerSelection) {
     return "It's a tie";
