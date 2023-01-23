@@ -1,5 +1,8 @@
 const buttons = document.querySelectorAll('button');
 const roundWinner = document.querySelector('.result');
+const keepScore = document.querySelector('.keep-score');
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
   const GAME_OPTIONS = ["rock", "paper", "scissors"];
@@ -15,11 +18,22 @@ function playRound(playerSelection, computerSelection) {
   } else {
     return `Computer wins! ${computerSelection} beats ${playerSelection}!`;
   }
+  
+function handleKeepScore(roundWinner) {
+    if (roundWinner.innerText.includes('Player wins!')) {
+      playerScore += 1;
+    } else if (roundWinner.innerText.includes('Computer wins!')) {
+      computerScore += 1;
+    }
+  
+    keepScore.innerText = `Player: ${playerScore} | Computer: ${computerScore}`;
+  
+    if (playerScore == 5 || computerScore == 5) {
+      keepScore.innerText = finalWinner(playerScore, computerScore);
+      roundWinner.remove();
+    }
+  }
 }
-
-const keepScore = document.querySelector('.keep-score');
-let playerScore = 0;
-let computerScore = 0;
 
 function finalWinner(playerScore, computerScore) {
   if (playerScore > computerScore) {
@@ -28,21 +42,6 @@ function finalWinner(playerScore, computerScore) {
     return "Sorry loser, the computer beat you."
   } else if (computerScore == playerScore) {
     return "It was a tie. Try again!"
-  }
-}
-
-function handleKeepScore(roundWinner) {
-  if (roundWinner.innerText.includes('Player wins!')) {
-    playerScore += 1;
-  } else if (roundWinner.innerText.includes('Computer wins!')) {
-    computerScore += 1;
-  }
-
-  keepScore.innerText = `Player: ${playerScore} | Computer: ${computerScore}`;
-
-  if (playerScore == 5 || computerScore == 5) {
-    keepScore.innerText = finalWinner(playerScore, computerScore);
-    roundWinner.remove();
   }
 }
 
