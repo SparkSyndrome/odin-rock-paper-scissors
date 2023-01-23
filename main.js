@@ -1,25 +1,8 @@
-const GAME_OPTIONS = ["rock", "paper", "scissors"];
-
-// function game() {
-//   let computerScore = 0;
-//   let playerScore = 0;
-//   for (let i = 0; i < 5; i++) {
-//     const computerSelection = getComputerChoice();
-//     const playerSelection = getPlayerChoice();
-//     playRound(playerSelection, computerSelection);
-//     if (playRound(playerSelection, computerSelection) == `Player wins! ${playerSelection} beats ${computerSelection}!`) {
-//       playerScore++;
-//     } else if (playRound(playerSelection, computerSelection) == `Computer wins! ${computerSelection} beats ${playerSelection}!`) {
-//       computerScore++;
-//     }
-//     console.log(playRound(playerSelection, computerSelection));
-//     console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
-//     console.log("--------------------------------------")
-//   }
-//   console.log(finalWinner(playerScore, computerScore));
-// }
+const buttons = document.querySelectorAll('button');
+const roundWinner = document.querySelector('.result');
 
 function getComputerChoice() {
+  const GAME_OPTIONS = ["rock", "paper", "scissors"];
   const computerChoice = GAME_OPTIONS[Math.floor(Math.random() * GAME_OPTIONS.length)];
   return computerChoice;
 }
@@ -34,6 +17,10 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+const keepScore = document.querySelector('.keep-score');
+let playerScore = 0;
+let computerScore = 0;
+
 function finalWinner(playerScore, computerScore) {
   if (playerScore > computerScore) {
     return "Congratulations! You beat the computer."
@@ -44,10 +31,20 @@ function finalWinner(playerScore, computerScore) {
   }
 }
 
-// game();
+function handleKeepScore(roundWinner) {
+  if (roundWinner.innerText.includes('Player wins!')) {
+    playerScore += 1;
+  } else if (roundWinner.innerText.includes('Computer wins!')) {
+    computerScore += 1;
+  }
 
-const buttons = document.querySelectorAll('button');
-const roundWinner = document.querySelector('p');
+  keepScore.innerText = `Player: ${playerScore} | Computer: ${computerScore}`;
+
+  if (playerScore == 5 || computerScore == 5) {
+    keepScore.innerText = finalWinner(playerScore, computerScore);
+    roundWinner.remove();
+  }
+}
 
 buttons.forEach(button => button.addEventListener('mousedown', e => {
   roundWinner.innerText = "";
@@ -59,4 +56,5 @@ buttons.forEach(button => button.addEventListener('mouseup', e => {
   roundWinner.innerText = (playRound(e.target.id, getComputerChoice()));
   button.style.backgroundColor = '';
   button.style.boxShadow = '';
+  handleKeepScore(roundWinner);
 }));
