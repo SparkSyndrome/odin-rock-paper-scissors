@@ -18,20 +18,20 @@ function playRound(playerSelection, computerSelection) {
   } else {
     return `Computer wins! ${computerSelection} beats ${playerSelection}!`;
   }
-  
+}
+
 function handleKeepScore(roundWinner) {
-    if (roundWinner.innerText.includes('Player wins!')) {
-      playerScore += 1;
-    } else if (roundWinner.innerText.includes('Computer wins!')) {
-      computerScore += 1;
-    }
-  
-    keepScore.innerText = `Player: ${playerScore} | Computer: ${computerScore}`;
-  
-    if (playerScore == 5 || computerScore == 5) {
-      keepScore.innerText = finalWinner(playerScore, computerScore);
-      roundWinner.remove();
-    }
+  if (roundWinner.innerText.includes('Player wins!')) {
+    playerScore += 1;
+  } else if (roundWinner.innerText.includes('Computer wins!')) {
+    computerScore += 1;
+  }
+
+  keepScore.innerText = `Player: ${playerScore} | Computer: ${computerScore}`;
+
+  if (playerScore >= 5 || computerScore >= 5) {
+    keepScore.innerText = finalWinner(playerScore, computerScore);
+    roundWinner.remove();
   }
 }
 
@@ -45,7 +45,7 @@ function finalWinner(playerScore, computerScore) {
   }
 }
 
-buttons.forEach(button => button.addEventListener('mousedown', e => {
+buttons.forEach(button => button.addEventListener('mousedown', () => {
   roundWinner.innerText = "";
   button.style.backgroundColor = 'rgba(51, 51, 51, 0.55)';
   button.style.boxShadow = '0 0 20px 10px white';
