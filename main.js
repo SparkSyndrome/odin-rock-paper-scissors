@@ -30,8 +30,23 @@ function handleScore(roundWinner) {
   score.innerText = `Player: ${playerScore} | Computer: ${computerScore}`;
 
   if (playerScore >= 5 || computerScore >= 5) {
-    score.innerText = declareWinner(playerScore, computerScore)
+    score.innerText = declareWinner(playerScore, computerScore);
     roundWinner.remove();
+
+    buttons.forEach(button => button.classList.add(noHover));
+
+    buttons.forEach(button => button.removeEventListener('mousedown', () => {
+      roundWinner.innerText = "";
+      button.style.backgroundColor = 'rgba(51, 51, 51, 0.5)';
+      button.style.boxShadow = '0 0 20px 10px white';
+    }))
+
+    buttons.forEach(button.removeEventListener, e => {
+      roundWinner.innerText = (playRound(e.target.id, getComputerChoice()));
+      button.style.backgroundColor = '';
+      button.style.boxShadow = '';
+      handleScore(roundWinner);
+    })
   }
 }
 
@@ -57,3 +72,6 @@ buttons.forEach(button => button.addEventListener('mouseup', e => {
   button.style.boxShadow = '';
   handleScore(roundWinner);
 }))
+
+// Fix button :hover behavior after five rounds have been played.
+// Fix capitalization issues when displaying round winners.
