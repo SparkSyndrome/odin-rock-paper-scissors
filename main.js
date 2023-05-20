@@ -14,9 +14,9 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection == computerSelection) {
     return "It's a tie!"
   } else if ((playerSelection == 'rock' && computerSelection == 'scissors') || (playerSelection == 'paper' && computerSelection == 'rock') || (playerSelection == 'scissors' && computerSelection == 'paper')) {
-    return `Congratulations, you won! ${playerSelection} beats ${computerSelection}.`
+    return `Congratulations, you won! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}.`
   } else {
-    return `Sorry, you're a loser. ${computerSelection} beats ${playerSelection}.`
+    return `Sorry, you're a loser. ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}.`
   }
 }
 
@@ -30,48 +30,32 @@ function handleScore(roundWinner) {
   score.innerText = `Player: ${playerScore} | Computer: ${computerScore}`;
 
   if (playerScore >= 5 || computerScore >= 5) {
-    score.innerText = declareWinner(playerScore, computerScore);
-    roundWinner.remove();
-
-    buttons.forEach(button => button.classList.add(noHover));
-
-    buttons.forEach(button => button.removeEventListener('mousedown', () => {
-      roundWinner.innerText = "";
-      button.style.backgroundColor = 'rgba(51, 51, 51, 0.5)';
-      button.style.boxShadow = '0 0 20px 10px white';
-    }))
-
-    buttons.forEach(button.removeEventListener, e => {
-      roundWinner.innerText = (playRound(e.target.id, getComputerChoice()));
-      button.style.backgroundColor = '';
-      button.style.boxShadow = '';
-      handleScore(roundWinner);
-    })
+    roundWinner.innerText = declareWinner(playerScore, computerScore);
+    buttons.forEach(button => {
+      button.disabled = true;
+      button.classList.add('.no-hover');
+    });
   }
 }
 
 function declareWinner(playerScore, computerScore) {
   if (playerScore == computerScore) {
-    return "It's a tie!"
+    return "Game Over: It's a tie!"
   } else if (playerScore > computerScore) {
-    return "Congratulations, you won!"
+    return "Game Over: Congratulations, you won!"
   } else {
-    return "Sorry, you're a loser."
+    return "Game Over: Sorry, you're a loser."
   }
 }
 
 buttons.forEach(button => button.addEventListener('mousedown', () => {
-  roundWinner.innerText = "";
   button.style.backgroundColor = 'rgba(51, 51, 51, 0.5)';
   button.style.boxShadow = '0 0 20px 10px white';
 }))
 
 buttons.forEach(button => button.addEventListener('mouseup', e => {
-  roundWinner.innerText = (playRound(e.target.id, getComputerChoice()));
   button.style.backgroundColor = '';
   button.style.boxShadow = '';
+  roundWinner.innerText = (playRound(e.target.id, getComputerChoice()));
   handleScore(roundWinner);
 }))
-
-// Fix button :hover behavior after five rounds have been played.
-// Fix capitalization issues when displaying round winners.

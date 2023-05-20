@@ -16,9 +16,9 @@ body {
 button {
   background: none;
   border: 5px solid black;
+  padding: 40px;
   border-radius: 15px;
   box-shadow: 0 0 25px 1px white;
-  padding: 40px;
   background: rgba(45, 44, 44, 0.5);
 }
 
@@ -30,14 +30,15 @@ button img {
 
 button:hover {
   box-shadow: 0 0 20px 10px white;
-  cursor: pointer;
   background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
-button.noHover {
+button.no-hover, 
+button.no-hover:hover {
   box-shadow: 0 0 25px 1px white;
-  cursor: default;
   background: rgba(45, 44, 44, 0.5);
+  cursor: default;
 }
 
 button#scissors {
