@@ -33,7 +33,7 @@ function handleScore(roundWinner) {
     roundWinner.innerText = declareWinner(playerScore, computerScore);
     buttons.forEach(button => {
       button.disabled = true;
-      button.classList.add('.no-hover');
+      button.classList.add('no-hover');
     });
   }
 }
